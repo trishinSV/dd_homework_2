@@ -10,6 +10,13 @@
 
 @interface ViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UITextView *textView;
+- (IBAction)redButton:(id)sender;
+- (IBAction)blueButton:(id)sender;
+- (IBAction)orangeButton:(id)sender;
+- (IBAction)greenButton:(id)sender;
+- (IBAction)clearButton:(id)sender;
+
 
 @end
 
