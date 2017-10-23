@@ -9,70 +9,64 @@
 #import "ViewController.h"
 
 @interface ViewController ()
-
+@property(strong) NSMutableArray * arrayOfTextToPass;
 @end
+
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-   [_textView setEditable:NO];
-    _colors = @{ @"red": [UIColor redColor],
-                              @"blue":[UIColor blueColor],
-                              @"green":[UIColor greenColor],
-                              @"orange": [UIColor orangeColor]
-                              };
+-(void)viewDidLoad{
+    _arrayOfTextToPass = [NSMutableArray array];
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+
+    if ([segue.identifier isEqualToString:@"arrayTable"]) {
+        TableViewController *destViewController = segue.destinationViewController;
+        [destViewController.stringsToShow removeAllObjects];
+        destViewController.stringsToShow = self.arrayOfTextToPass;
+    }
 }
--(void)selectColor:(id)color{
-    NSRange selectedRange = _textView.selectedRange;
+
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.textView resignFirstResponder];
+}
+
+
+- (IBAction)anyButtonClick:(UIButton *)sender {
+    [self.textView.textStorage
+     addAttribute:NSForegroundColorAttributeName
+     value:sender.currentTitleColor
+     range:[self.textView selectedRange]];
     
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]
-                                                   initWithAttributedString:_textView.attributedText];
+    NSString * tempString = [_textView textInRange:_textView.selectedTextRange];
+    NSMutableAttributedString *attributedObjects=[[NSMutableAttributedString alloc] initWithString:tempString];
     
-    [attributedString addAttribute:NSForegroundColorAttributeName
-                             value:color
-                             range:selectedRange];
-    
-    _textView.attributedText = attributedString;
-   
-    
-}
+    if (![_arrayOfTextToPass containsObject: attributedObjects]) {
+        [attributedObjects addAttribute:NSForegroundColorAttributeName
+                         value:sender.currentTitleColor
+                         range:[tempString rangeOfString:tempString]];
+        [_arrayOfTextToPass addObject:attributedObjects];
+    }
 
-- (IBAction)redButton:(id)sender {
-    
-    [self selectColor:[_colors valueForKey:@"red"]];
 }
-
-- (IBAction)blueButton:(id)sender {
-    [self selectColor:[_colors valueForKey:@"blue"]];
-}
-
-- (IBAction)orangeButton:(id)sender {
-   [self selectColor:[_colors valueForKey:@"orange"]];
-}
-
-- (IBAction)greenButton:(id)sender {
-   [self selectColor:[_colors valueForKey:@"green"]];
-}
-
 - (IBAction)clearButton:(id)sender {
-
-
-    NSMutableAttributedString  *attributedString = [[NSMutableAttributedString alloc]
-                                                    initWithAttributedString:_textView.attributedText];
     
-    NSRange originalRange = NSMakeRange(0, attributedString.length);
+    NSMutableAttributedString *attributedObjects=[[NSMutableAttributedString alloc]
+                                                  initWithString:[_textView textInRange:_textView.selectedTextRange]];
     
-    [attributedString setAttributes:@{}
-                              range:originalRange];
-    _textView.attributedText = attributedString;
+    [self.textView.textStorage
+     removeAttribute:NSForegroundColorAttributeName
+     range:[self.textView selectedRange]];
+    
+    if ([_arrayOfTextToPass containsObject:attributedObjects]) {
+        [_arrayOfTextToPass removeObjectAtIndex:[_arrayOfTextToPass indexOfObject:attributedObjects]];
+    }
 }
+
 
 @end
