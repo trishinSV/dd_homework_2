@@ -7,7 +7,8 @@
 //
 
 #import "TableViewController.h"
-
+#import "StringWithRange.h"
+#import "ViewController.h"
 @interface TableViewController ()
 
 @end
@@ -16,21 +17,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.myTable reloadData];
 }
+
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_stringsToShow count];
+    return [self.stringsToShow count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.textLabel.attributedText = [_stringsToShow objectAtIndex:indexPath.row];
+    StringWithRange *textWithRange = [self.stringsToShow objectAtIndex:indexPath.row];
+    cell.textLabel.attributedText = textWithRange.text;
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    StringWithRange *textWithRange = [self.stringsToShow objectAtIndex:indexPath.row];
+    
+    [self.delegate removeForegroundColorAttributeWithRange: textWithRange.range];
+    [self.stringsToShow removeObjectAtIndex:indexPath.row];
+    [tableView reloadData];
+    
 }
 
 @end

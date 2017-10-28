@@ -13,6 +13,7 @@
 		A5554DD01F9010A500F66257 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5554DCF1F9010A500F66257 /* Assets.xcassets */; };
 		A5554DD31F9010A500F66257 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5554DD11F9010A500F66257 /* LaunchScreen.storyboard */; };
 		A5554DD61F9010A500F66257 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5554DD51F9010A500F66257 /* main.m */; };
+		A55AFF2E1FA4972300A455F3 /* StringWithRange.m in Sources */ = {isa = PBXBuildFile; fileRef = A55AFF2D1FA4972300A455F3 /* StringWithRange.m */; };
 		A560F2CC1F9CCFC4002DD7E8 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A560F2CB1F9CCFC4002DD7E8 /* TableViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,8 @@
 		A5554DD21F9010A500F66257 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5554DD41F9010A500F66257 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5554DD51F9010A500F66257 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A55AFF2C1FA4972300A455F3 /* StringWithRange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringWithRange.h; sourceTree = "<group>"; };
+		A55AFF2D1FA4972300A455F3 /* StringWithRange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringWithRange.m; sourceTree = "<group>"; };
 		A560F2CA1F9CCFC4002DD7E8 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		A560F2CB1F9CCFC4002DD7E8 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,6 +70,8 @@
 				A560F2CB1F9CCFC4002DD7E8 /* TableViewController.m */,
 				A5554DC91F9010A500F66257 /* ViewController.h */,
 				A5554DCA1F9010A500F66257 /* ViewController.m */,
+				A55AFF2C1FA4972300A455F3 /* StringWithRange.h */,
+				A55AFF2D1FA4972300A455F3 /* StringWithRange.m */,
 				A5554DCC1F9010A500F66257 /* Main.storyboard */,
 				A5554DCF1F9010A500F66257 /* Assets.xcassets */,
 				A5554DD11F9010A500F66257 /* LaunchScreen.storyboard */,
@@ -151,6 +156,7 @@
 				A5554DD61F9010A500F66257 /* main.m in Sources */,
 				A5554DC81F9010A500F66257 /* AppDelegate.m in Sources */,
 				A560F2CC1F9CCFC4002DD7E8 /* TableViewController.m in Sources */,
+				A55AFF2E1FA4972300A455F3 /* StringWithRange.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

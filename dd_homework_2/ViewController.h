@@ -7,8 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TableViewController.h"
-@interface ViewController : UIViewController
+#import "StringWithRange.h"
+
+
+
+@protocol ViewControllerDelegate <NSObject>
+
+- (void)removeForegroundColorAttributeWithRange:(NSRange)range;
+
+@end
+
+
+@interface ViewController : UIViewController <ViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 

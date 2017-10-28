@@ -7,26 +7,40 @@
 //
 
 #import "ViewController.h"
-
+#import "TableViewController.h"
+#import "StringWithRange.h"
 @interface ViewController ()
-@property(strong) NSMutableArray * arrayOfTextToPass;
 @end
 
 
 @implementation ViewController
 
 -(void)viewDidLoad{
-    _arrayOfTextToPass = [NSMutableArray array];
+    [super viewDidLoad];
+ 
 }
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 
+    NSMutableArray* textWithColor = [[NSMutableArray alloc] init];
+    
+    [self.textView.textStorage enumerateAttribute:NSForegroundColorAttributeName inRange:NSMakeRange(0, self.textView.text.length) options:0 usingBlock:^(id value, NSRange range, BOOL *stop) {
+        if (value) {
+            NSAttributedString *text = (NSAttributedString *)[self.textView.textStorage attributedSubstringFromRange:range];
+            StringWithRange *swr = [[StringWithRange alloc] initWithText:text range:range];
+            [textWithColor addObject:swr];
+
+        }
+    }];
+    
     if ([segue.identifier isEqualToString:@"arrayTable"]) {
         TableViewController *destViewController = segue.destinationViewController;
-        [destViewController.stringsToShow removeAllObjects];
-        destViewController.stringsToShow = self.arrayOfTextToPass;
+        ViewController *firstController = (ViewController *)segue.sourceViewController;
+        destViewController.delegate = firstController;
+        destViewController.stringsToShow = textWithColor;
+        
     }
 }
 
@@ -42,31 +56,16 @@
      addAttribute:NSForegroundColorAttributeName
      value:sender.currentTitleColor
      range:[self.textView selectedRange]];
-    
-    NSString * tempString = [_textView textInRange:_textView.selectedTextRange];
-    NSMutableAttributedString *attributedObjects=[[NSMutableAttributedString alloc] initWithString:tempString];
-    
-    if (![_arrayOfTextToPass containsObject: attributedObjects]) {
-        [attributedObjects addAttribute:NSForegroundColorAttributeName
-                         value:sender.currentTitleColor
-                         range:[tempString rangeOfString:tempString]];
-        [_arrayOfTextToPass addObject:attributedObjects];
-    }
-
 }
+    
 - (IBAction)clearButton:(id)sender {
-    
-    NSMutableAttributedString *attributedObjects=[[NSMutableAttributedString alloc]
-                                                  initWithString:[_textView textInRange:_textView.selectedTextRange]];
-    
     [self.textView.textStorage
      removeAttribute:NSForegroundColorAttributeName
      range:[self.textView selectedRange]];
-    
-    if ([_arrayOfTextToPass containsObject:attributedObjects]) {
-        [_arrayOfTextToPass removeObjectAtIndex:[_arrayOfTextToPass indexOfObject:attributedObjects]];
-    }
+
 }
 
-
+- (void)removeForegroundColorAttributeWithRange:(NSRange)range {
+    [self.textView.textStorage removeAttribute:NSForegroundColorAttributeName range:range];
+}
 @end

@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ViewController.h"
+#import "StringWithRange.h"
 @interface TableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) id<ViewControllerDelegate> delegate;
 @property (strong, nonatomic) IBOutlet UITableView *myTable;
 @property (nonatomic, strong) NSMutableArray *stringsToShow;
 @end
