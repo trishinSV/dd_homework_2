@@ -11,7 +11,7 @@
 #import "StringWithRange.h"
 @interface TableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic) id<ViewControllerDelegate> delegate;
-@property (strong, nonatomic) IBOutlet UITableView *myTable;
-@property (nonatomic, strong) NSMutableArray *stringsToShow;
+@property (retain, nonatomic) id<ViewControllerDelegate> delegate;
+@property (retain, nonatomic) IBOutlet UITableView *myTable;
+@property (retain, nonatomic) NSMutableArray *stringsToShow;
 @end

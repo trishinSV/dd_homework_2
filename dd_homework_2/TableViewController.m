@@ -28,11 +28,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     StringWithRange *textWithRange = [self.stringsToShow objectAtIndex:indexPath.row];
     cell.textLabel.attributedText = textWithRange.text;
-    
     return cell;
 }
 
@@ -44,6 +42,15 @@
     [self.stringsToShow removeObjectAtIndex:indexPath.row];
     [tableView reloadData];
     
+}
+-(void) dealloc{
+    [_myTable release];
+    _myTable = nil;
+    [_delegate release];
+    _delegate = nil;
+    [_stringsToShow release];
+    _stringsToShow = nil;
+    [super dealloc];
 }
 
 @end

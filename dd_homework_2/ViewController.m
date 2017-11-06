@@ -24,14 +24,15 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 
-    NSMutableArray* textWithColor = [[NSMutableArray alloc] init];
+    NSMutableArray* textWithColor = [[[NSMutableArray alloc] init]autorelease];
     
     [self.textView.textStorage enumerateAttribute:NSForegroundColorAttributeName inRange:NSMakeRange(0, self.textView.text.length) options:0 usingBlock:^(id value, NSRange range, BOOL *stop) {
         if (value) {
-            NSAttributedString *text = (NSAttributedString *)[self.textView.textStorage attributedSubstringFromRange:range];
+           NSAttributedString *text = [self.textView.textStorage attributedSubstringFromRange:range];
             StringWithRange *swr = [[StringWithRange alloc] initWithText:text range:range];
             [textWithColor addObject:swr];
-
+            [swr release];
+          //  [text autorelease];
         }
     }];
     
@@ -67,5 +68,11 @@
 
 - (void)removeForegroundColorAttributeWithRange:(NSRange)range {
     [self.textView.textStorage removeAttribute:NSForegroundColorAttributeName range:range];
+}
+
+-(void) dealloc{
+    
+    [_textView release];
+    [super dealloc];
 }
 @end

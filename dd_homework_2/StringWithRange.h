@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface StringWithRange : NSObject
-@property (nonatomic) NSAttributedString * _Nonnull  text;
+@property (retain,nonatomic) NSAttributedString * _Nullable  text;
 @property (nonatomic) NSRange range;
 
-- (id _Nonnull )initWithText:(NSAttributedString *_Nonnull)text
+- (id _Nonnull )initWithText:(NSAttributedString *_Nullable)text
                        range:(NSRange)range;
 
 

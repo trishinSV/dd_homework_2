@@ -20,7 +20,7 @@
 
 @interface ViewController : UIViewController <ViewControllerDelegate>
 
-@property (strong, nonatomic) IBOutlet UITextView *textView;
+@property (retain, nonatomic) IBOutlet UITextView *textView;
 
 @end
 

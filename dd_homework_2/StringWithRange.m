@@ -17,4 +17,11 @@
     }
     return self;
 }
+
+- (void) dealloc{
+    
+    [_text release];
+    _text = nil;
+    [super dealloc];
+}
 @end
