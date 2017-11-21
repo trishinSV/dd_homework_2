@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ViewController.h"
-#import "StringWithRange.h"
+//#import "StringWithRange.h"
+
+
+@class StringWithRange;
+
+
 @interface TableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (retain, nonatomic) id<ViewControllerDelegate> delegate;

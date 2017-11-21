@@ -12,7 +12,7 @@
 - (id)initWithText:(NSAttributedString *)text
              range:(NSRange)range {
     if (self = [super init]) {
-        self.text = text;
+        _text = [text copy];
         self.range = range;
     }
     return self;

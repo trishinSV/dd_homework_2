@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "StringWithRange.h"
+//#import "StringWithRange.h"
 
-
+@class StringWithRange;
 
 @protocol ViewControllerDelegate <NSObject>
 
